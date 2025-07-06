@@ -14,6 +14,18 @@ class VesselStatusResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'            => $this->id,
+            'consignee'     => $this->consignee,
+            'vessel'        => $this->vessel,
+            'etd'           => $this->etd,
+            'eta'           => $this->eta,
+            'pod'           => $this->pod,
+            'pol'           => $this->pol,
+            'status'        => $this->status,
+            'description'   => $this->description,
+            'updated_at'    => $this->updated_at,
+            'created_at'    => $this->created_at
+        ];
     }
 }

@@ -1,5 +1,6 @@
 import AppLayout from '@/layouts/app-layout';
 import { BreadcrumbItem } from '@/types';
+import { Port } from '@/types/port';
 import Form from './form';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -9,10 +10,10 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const VesselCreate = () => {
+const VesselCreate = ({ ports }: { ports: Port[] }) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Form />
+            <Form ports={ports} />
         </AppLayout>
     );
 };

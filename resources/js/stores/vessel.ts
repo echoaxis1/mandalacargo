@@ -1,3 +1,4 @@
+import { VesselStatus } from '@/types/vessel';
 import { create } from 'zustand';
 
 type State = {

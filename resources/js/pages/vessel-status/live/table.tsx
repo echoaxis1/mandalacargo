@@ -1,4 +1,5 @@
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { VesselStatus } from '@/types/vessel';
 import { router } from '@inertiajs/react';
 import { formatDate } from 'date-fns';
 import { Ship } from 'lucide-react';
@@ -39,11 +40,12 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
                 <TableCaption className="text-white">Data di terakhir update</TableCaption>
                 <TableHeader className="bg-blue-200">
                     <TableRow className="text-2xl">
-                        <TableHead className="w-[100px] text-center">No</TableHead>
                         <TableHead>Consignee</TableHead>
                         <TableHead>Vessel</TableHead>
                         <TableHead className="text-center">ETD</TableHead>
                         <TableHead className="text-center">ETA</TableHead>
+                        <TableHead className="text-center">POL</TableHead>
+                        <TableHead className="text-center">POD</TableHead>
                         <TableHead>Status</TableHead>
                         <TableHead>Keterangan</TableHead>
                     </TableRow>
@@ -51,11 +53,12 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
                 <TableBody>
                     {data.data.map((item, index) => (
                         <TableRow key={item.id}>
-                            <TableCell className="w-[100px] text-center">{index + 1}</TableCell>
                             <TableCell>{item.consignee}</TableCell>
                             <TableCell>{item.vessel}</TableCell>
                             <TableCell className="text-center">{formatDate(item.etd, 'dd MMMM yyyy')}</TableCell>
                             <TableCell className="text-center">{formatDate(item.eta, 'dd MMMM yyyy')}</TableCell>
+                            <TableCell className="text-center">{item.pod.name}</TableCell>
+                            <TableCell className="text-center">{item.pol.name}</TableCell>
                             <TableCell>
                                 <Status status={item.status} />
                             </TableCell>

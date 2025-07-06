@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Port } from '@/types/port';
 import { Link, useForm } from '@inertiajs/react';
 import { Save, Undo } from 'lucide-react';
 import React from 'react';
@@ -8,7 +9,7 @@ import { DateSelect } from '../components/date-select';
 import { SelectPort } from '../components/select-port';
 import SelectStatus from '../components/select-status';
 
-const Form = () => {
+const Form = ({ ports }: { ports: Port[] }) => {
     const { data, setData, post, reset, errors, processing } = useForm<FormVessel>({
         vessel: '',
         etd: '',
@@ -19,8 +20,6 @@ const Form = () => {
         description: '',
         consignee: '',
     });
-
-    console.log(data);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -84,6 +83,7 @@ const Form = () => {
 
                     {/* POD */}
                     <SelectPort
+                        ports={ports}
                         placeholder="Pilih POD"
                         value={data.pod_id}
                         onChange={(value) => setData('pod_id', value)}
@@ -104,6 +104,7 @@ const Form = () => {
 
                     {/* POD */}
                     <SelectPort
+                        ports={ports}
                         placeholder="Pilih POL"
                         value={data.pol_id}
                         onChange={(value) => setData('pol_id', value)}

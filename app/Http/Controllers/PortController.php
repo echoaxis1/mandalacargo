@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Port;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PortController extends Controller
 {
@@ -12,7 +13,8 @@ class PortController extends Controller
      */
     public function index()
     {
-        //
+        $ports = Port::all();
+        return Inertia::render('port/index', compact('ports'));
     }
 
     /**
@@ -52,7 +54,8 @@ class PortController extends Controller
      */
     public function update(Request $request, Port $port)
     {
-        //
+        $port->update($request->all());
+        return redirect()->back()->with('success', 'Data berhasil diperbarui');
     }
 
     /**
@@ -60,6 +63,11 @@ class PortController extends Controller
      */
     public function destroy(Port $port)
     {
-        //
+        try {
+            $port->delete();
+            return redirect()->back()->with('success', 'Data berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('success', 'Gagal menghapus: Pelabuhan sedang digunakan.');
+        }
     }
 }

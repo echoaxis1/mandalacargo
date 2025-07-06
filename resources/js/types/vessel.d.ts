@@ -1,9 +1,13 @@
+import { Port } from './port';
+
 type VesselStatus = {
     id: number;
     vessel: string;
     consignee: string;
     etd: string;
     eta: string;
+    pod: Port;
+    pol: Port;
     status: string;
     description: string;
     created_at: string;

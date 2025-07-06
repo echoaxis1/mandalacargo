@@ -11,22 +11,25 @@ use Inertia\Inertia;
 
 class VesselStatusController extends Controller
 {
+
+    public function __construct(protected VesselStatusService $service) {}
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(VesselStatusService $service)
     {
-        $vesselStatuses = VesselStatus::paginate(10);
-        $resource = VesselStatusResource::collection(VesselStatus::orderBy('id', 'desc')->paginate(10));
+        $resource = $service->paginate();
         return Inertia::render('vessel-status/index', compact('resource'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(VesselStatusService $service)
     {
-        return Inertia::render('vessel-status/create/index');
+        $ports = $service->getPorts();
+        return Inertia::render('vessel-status/create/index', compact('ports'));
     }
 
     /**
@@ -74,15 +77,15 @@ class VesselStatusController extends Controller
 
             return redirect()->back()->with('success', 'Data berhasil dihapus');
         } catch (\Throwable $e) {
-            return redirect()->back()->with('success', 'Data berhasil dihapus');
+            return redirect()->back()->with('success', 'Data gagal dihapus');
         }
     }
 
 
     public function live()
     {
-        $vesselStatuses = VesselStatus::paginate(10);
-        $resource = VesselStatusResource::collection(VesselStatus::orderBy('id', 'desc')->paginate(10));
+        $resource = $this->service->paginate();
+
         return Inertia::render('vessel-status/live/index', compact('resource'));
     }
 }

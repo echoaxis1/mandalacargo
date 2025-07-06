@@ -1,9 +1,10 @@
-import { Anchor, Container, Ship } from 'lucide-react';
+import { CheckCircle, PackagePlus, ShieldAlert, Ship } from 'lucide-react';
 
 const options = [
-    { value: 'pending', label: 'Pending', icon: Anchor },
-    { value: 'shiping', label: 'Dalam Pengiriman', icon: Ship },
-    { value: 'arived', label: 'Tiba', icon: Container },
+    { value: 'loading', label: 'LOADING', icon: PackagePlus },
+    { value: 'onvessel', label: 'ON VESSEL', icon: Ship },
+    { value: 'sppb', label: 'SPPB', icon: CheckCircle },
+    { value: 'spjm', label: 'SPJM', icon: ShieldAlert },
 ];
 
 const Status = ({ status }: { status: string }) => {
