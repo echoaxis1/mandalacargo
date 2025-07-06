@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('consignee');        // Nama penerima barang
             $table->string('vessel');           // Nama kapal
-            $table->timestamp('etd');   // Estimated Time of Departure
-            $table->timestamp('eta');   // Estimated Time of Arrival
+            $table->timestamp('etd')->nullable();   // Estimated Time of Departure
+            $table->timestamp('eta')->nullable();   // Estimated Time of Arrival
             $table->foreignId('pol_id')->constrained('ports');
             $table->foreignId('pod_id')->constrained('ports');
             $table->string('description');      // Keterangan (misalnya: FCL/1x40/NPCT)
