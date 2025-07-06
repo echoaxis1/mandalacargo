@@ -26,6 +26,8 @@ class VesselStatusRequest extends FormRequest
             'vessel'        => 'required',
             'etd'           => 'required',
             'eta'           => 'required',
+            'pod_id'        => 'required|exists:ports,id',
+            'pol_id'        => 'required|exists:ports,id',
             'description'   => 'required',
             'status'        => 'required',
         ];

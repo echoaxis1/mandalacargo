@@ -1,33 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, router, useForm } from '@inertiajs/react';
+import { formatDate } from 'date-fns';
 import { Save, Undo } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 import { DateSelect } from '../components/date-select';
-import { SelectPort } from '../components/select-port';
 import SelectStatus from '../components/select-status';
 
-const Form = () => {
-    const { data, setData, post, reset, errors, processing } = useForm<FormVessel>({
-        vessel: '',
-        etd: '',
-        eta: '',
-        pod_id: undefined,
-        pol_id: undefined,
-        status: '',
-        description: '',
-        consignee: '',
-    });
-
-    console.log(data);
+const FormEdit = ({ vesselStatus }: { vesselStatus: VesselStatus }) => {
+    const { data, setData, patch, processing, errors } = useForm<FormVessel>(vesselStatus);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route('vessel-status.store'), {
-            onSuccess: () => {
-                reset();
-                toast.success('Data berhasil disimpan');
+        patch(route('vessel-status.update', data), {
+            onSuccess: ({ props }) => {
+                toast.success(props.flash?.success);
+                router.reload({ only: ['resource'] });
             },
             onError: (err) => {
                 toast.error(JSON.stringify(err));
@@ -43,7 +32,7 @@ const Form = () => {
 
     return (
         <div className="mt-3 px-42 pt-10">
-            <h1 className="mb-3 text-xl font-bold">Buat Data Vessel</h1>
+            <h1 className="mb-3 text-xl font-bold">Ubah Data Vessel</h1>
             <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="space-y-1">
                     <p className="font-bold">Consignee</p>
@@ -57,7 +46,6 @@ const Form = () => {
                     {errors.consignee && <p className="mt-2 text-xs text-red-500">{errors.consignee}</p>}
                 </div>
 
-                {/* VESSEL */}
                 <div className="space-y-1">
                     <p className="font-bold">Vessel</p>
                     <Input
@@ -72,9 +60,9 @@ const Form = () => {
 
                 <div className="flex gap-3">
                     <div className="">
-                        {/* ETD */}
                         <DateSelect
                             required
+                            label="ETD"
                             text="Pilih Keberangkatan"
                             value={data.etd ?? ''}
                             onChange={(value) => setData('etd', value)}
@@ -82,35 +70,18 @@ const Form = () => {
                         {errors.eta && <p className="mt-2 text-xs text-red-500">{errors.eta}</p>}
                     </div>
 
-                    {/* POD */}
-                    <SelectPort
-                        placeholder="Pilih POD"
-                        value={data.pod_id}
-                        onChange={(value) => setData('pod_id', value)}
-                    />
-                </div>
-
-                <div className="flex justify-between gap-3">
                     <div className="">
-                        {/* ETA */}
                         <DateSelect
                             required
+                            label="ETA"
                             text="Pilih Kedatangan"
                             value={data.eta ?? ''}
                             onChange={(value) => setData('eta', value)}
                         />
                         {errors.etd && <p className="mt-2 text-xs text-red-500">{errors.etd}</p>}
                     </div>
-
-                    {/* POD */}
-                    <SelectPort
-                        placeholder="Pilih POL"
-                        value={data.pol_id}
-                        onChange={(value) => setData('pol_id', value)}
-                    />
                 </div>
 
-                {/* DESCRIPTION */}
                 <div className="space-y-1">
                     <p className="font-bold">Keterangan</p>
                     <Input
@@ -123,12 +94,15 @@ const Form = () => {
                     {errors.description && <p className="mt-2 text-xs text-red-500">{errors.description}</p>}
                 </div>
 
-                {/* STATUS */}
                 <div className="space-y-1">
                     <p className="font-bold">Status</p>
                     <SelectStatus value={data.status ?? ''} onChange={(value) => setData('status', value)} />
                     {errors.status && <p className="mt-2 text-xs text-red-500">{errors.status}</p>}
                 </div>
+
+                <p className="text-center text-xs text-slate-700">
+                    Terakhir di update {formatDate(vesselStatus.updated_at, 'dd MMMM yyyy HH:mm:ss')}
+                </p>
 
                 <div className="mt-10 flex justify-between">
                     <Link href={route('vessel-status.index')}>
@@ -147,4 +121,4 @@ const Form = () => {
     );
 };
 
-export default Form;
+export default FormEdit;

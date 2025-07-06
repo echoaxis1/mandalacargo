@@ -17,7 +17,7 @@ class VesselStatusController extends Controller
     public function index()
     {
         $vesselStatuses = VesselStatus::paginate(10);
-        $resource = VesselStatusResource::collection(VesselStatus::paginate(10));
+        $resource = VesselStatusResource::collection(VesselStatus::orderBy('id', 'desc')->paginate(10));
         return Inertia::render('vessel-status/index', compact('resource'));
     }
 
@@ -51,19 +51,21 @@ class VesselStatusController extends Controller
      */
     public function edit(VesselStatus $vesselStatus)
     {
-        return Inertia::render('vessel-status/edit/index');
+        return Inertia::render('vessel-status/edit/index', compact('vesselStatus'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VesselStatus $vesselStatus)
+    public function update(VesselStatusRequest $request, VesselStatus $vesselStatus)
     {
-        //
+        $vesselStatus->update($request->validated());
+        return redirect()->back()->with('success', 'Data berhasil diubah :)');
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Hapus data
      */
     public function destroy(VesselStatus $vesselStatus)
     {
@@ -74,5 +76,13 @@ class VesselStatusController extends Controller
         } catch (\Throwable $e) {
             return redirect()->back()->with('success', 'Data berhasil dihapus');
         }
+    }
+
+
+    public function live()
+    {
+        $vesselStatuses = VesselStatus::paginate(10);
+        $resource = VesselStatusResource::collection(VesselStatus::orderBy('id', 'desc')->paginate(10));
+        return Inertia::render('vessel-status/live/index', compact('resource'));
     }
 }

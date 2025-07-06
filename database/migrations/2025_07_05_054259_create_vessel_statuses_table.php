@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('vessel');           // Nama kapal
             $table->timestamp('etd');   // Estimated Time of Departure
             $table->timestamp('eta');   // Estimated Time of Arrival
+            $table->foreignId('pol_id')->constrained('ports');
+            $table->foreignId('pod_id')->constrained('ports');
             $table->string('description');      // Keterangan (misalnya: FCL/1x40/NPCT)
             $table->string('status');           // Status umum, misal: Aktif, Selesai
             $table->timestamps();

@@ -8,9 +8,13 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\VesselStatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+    // menampilkan table live
+    Route::get('vessel-status/live', [VesselStatusController::class, 'live'])->name('vessel-status.live');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
@@ -35,6 +39,8 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::resource('/vessel-status', VesselStatusController::class);
+
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

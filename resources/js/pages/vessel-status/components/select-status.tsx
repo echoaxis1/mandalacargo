@@ -6,9 +6,10 @@ type Props = {
 };
 
 const options = [
-    { value: 'send', label: 'Dikirim' },
-    { value: 'shiping', label: 'Dalam Pengiriman' },
-    { value: 'completed', label: 'Selesai' },
+    { value: 'loading', label: 'LOADING' },
+    { value: 'onvessel', label: 'ON VESSEL' },
+    { value: 'sppb', label: 'SPPB' },
+    { value: 'spjm', label: 'SPJM' },
 ];
 
 const SelectStatus = ({ value, onChange }: Props) => {

@@ -6,6 +6,8 @@ type VesselStatus = {
     eta: string;
     status: string;
     description: string;
+    created_at: string;
+    updated_at: string;
 };
 
 type FormVessel = {
@@ -13,6 +15,8 @@ type FormVessel = {
     consignee: string;
     etd: string;
     eta: string;
+    pod_id: number | undefined;
+    pol_id: number | undefined;
     status: string;
     description: string;
 };

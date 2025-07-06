@@ -3,30 +3,25 @@ import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
-import { Label } from '@/components/ui/label';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { id } from 'date-fns/locale';
 
 type DateSelectProps = {
-    label: string;
     text?: string;
     value: string;
     required?: boolean;
     onChange: (value: string) => void;
 };
 
-export function DateSelect({ label, text, value, onChange, required = false }: DateSelectProps) {
+export function DateSelect({ text, value, onChange, required = false }: DateSelectProps) {
     const [open, setOpen] = React.useState(false);
     const [date, setDate] = React.useState<Date | undefined>(value ? new Date(value) : undefined);
 
     return (
         <div className="flex flex-col gap-3">
-            <Label htmlFor={label} className="px-1">
-                {label}
-            </Label>
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
-                    <Button variant="outline" id={label} className="w-48 justify-between font-normal">
+                    <Button variant="outline" className="w-48 justify-between font-normal">
                         {date ? date.toLocaleDateString() : (text ?? 'Pilih Tanggal')}
                         <ChevronDownIcon />
                     </Button>

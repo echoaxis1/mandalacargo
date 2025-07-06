@@ -21,7 +21,7 @@ const TableVesselStatus = ({ data }: { data: Paginate<VesselStatus> }) => {
                 <TableCaption>Menampilkan daftar shipment</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[100px]">No</TableHead>
+                        <TableHead className="w-[50px]">No</TableHead>
                         <TableHead>Consignee</TableHead>
                         <TableHead>Vessel</TableHead>
                         <TableHead className="text-left">ETD</TableHead>
@@ -34,10 +34,12 @@ const TableVesselStatus = ({ data }: { data: Paginate<VesselStatus> }) => {
                     {data.data.map((item, index) => (
                         <TableRow
                             key={item.id}
-                            onClick={() => setVessel(item)}
-                            className={`${vessel.id === item.id ? 'bg-primary text-primary-foreground' : ''}`}
+                            onClick={() => {
+                                setVessel(item);
+                            }}
+                            className={`${vessel.id === item.id ? 'bg-slate-200' : ''}`}
                         >
-                            <TableCell className="w-[100px]">{index + 1}</TableCell>
+                            <TableCell className="w-[50px]">{index + 1}</TableCell>
                             <TableCell>{item.consignee}</TableCell>
                             <TableCell>{item.vessel}</TableCell>
                             <TableCell className="text-left">{formatDate(item.etd, 'dd MMMM yyyy')}</TableCell>

@@ -15,6 +15,7 @@ import { router, useForm } from '@inertiajs/react';
 import { Trash } from 'lucide-react';
 import { toast } from 'sonner';
 
+/** aksi untuk menghapus data */
 const ButtonDelete = () => {
     const { delete: deleteVesselStatus, processing } = useForm();
     const { vessel } = useVesselStore();
