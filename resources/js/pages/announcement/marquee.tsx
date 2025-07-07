@@ -2,8 +2,6 @@ import { Announcement } from '@/types/announcement';
 import Marquee from 'react-fast-marquee';
 
 const AnnouncementMarquee = ({ data }: { data: Announcement[] }) => {
-    console.log(data);
-
     return (
         <div>
             <Marquee className="py-5 text-xl font-medium text-gray-800">
