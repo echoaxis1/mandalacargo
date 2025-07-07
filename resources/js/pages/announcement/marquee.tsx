@@ -1,6 +1,7 @@
 import { Announcement } from '@/types/announcement';
 import Marquee from 'react-fast-marquee';
 
+/** marque  */
 const AnnouncementMarquee = ({ data }: { data: Announcement[] }) => {
     return (
         <div>
