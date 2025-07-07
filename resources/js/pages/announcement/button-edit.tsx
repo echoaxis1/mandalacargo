@@ -44,8 +44,6 @@ const ButtonEdit = () => {
         });
     };
 
-    console.log(data?.is_active);
-
     return (
         <div>
             <Dialog modal={false} open={open} onOpenChange={setOpen}>

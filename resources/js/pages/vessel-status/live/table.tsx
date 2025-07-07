@@ -11,7 +11,7 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             router.reload({
-                only: ['resource', 'announcements'], // ini sesuai dengan prop yang kamu kirim dari controller
+                only: ['resource'], // ini sesuai dengan prop yang kamu kirim dari controller
             });
         }, 5000); // 5 detik
 
