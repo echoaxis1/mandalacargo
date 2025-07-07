@@ -15,7 +15,7 @@ type VesselStatusLiveProps = {
 const VesselStatusLive = ({ resource, announcements }: VesselStatusLiveProps) => {
     const [value, setValue, removeValue] = useLocalStorage('vessel_key');
 
-    if (value != 12345) return <LiveLocked />;
+    if (value != 31082020) return <LiveLocked />;
 
     return (
         <div className="relative h-screen overflow-hidden">
