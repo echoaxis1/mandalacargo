@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PortRequest;
 use App\Models\Port;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -20,18 +21,14 @@ class PortController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function store(PortRequest $request)
     {
-        //
+        Port::create($request->validated());
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
