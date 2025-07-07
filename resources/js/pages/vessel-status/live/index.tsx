@@ -3,6 +3,8 @@ import AnnouncementMarquee from '@/pages/announcement/marquee';
 import { Announcement } from '@/types/announcement';
 import { VesselStatus } from '@/types/vessel';
 import { Head } from '@inertiajs/react';
+import { useLocalStorage } from 'react-use-storage';
+import LiveLocked from './live-locked';
 import TableLive from './table';
 
 type VesselStatusLiveProps = {
@@ -11,6 +13,10 @@ type VesselStatusLiveProps = {
 };
 
 const VesselStatusLive = ({ resource, announcements }: VesselStatusLiveProps) => {
+    const [value, setValue, removeValue] = useLocalStorage('vessel_key');
+
+    if (value != 12345) return <LiveLocked />;
+
     return (
         <div className="relative h-screen overflow-hidden">
             {/* Background transparan */}
