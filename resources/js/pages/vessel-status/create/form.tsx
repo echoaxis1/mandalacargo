@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Port } from '@/types/port';
+import { FormVessel } from '@/types/vessel';
 import { Link, useForm } from '@inertiajs/react';
 import { Save, Undo } from 'lucide-react';
 import React from 'react';

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -13,8 +14,8 @@ use App\Http\Controllers\VesselStatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    // menampilkan table live
-    Route::get('vessel-status/live', [VesselStatusController::class, 'live'])->name('vessel-status.live');
+    Route::get('vessel-status/live', [VesselStatusController::class, 'live'])
+        ->name('vessel-status.live');
 
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -42,6 +43,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::resource('/vessel-status', VesselStatusController::class);
+
+    Route::resource('/announcement', AnnouncementController::class);
 
     Route::resource('/port', PortController::class);
 

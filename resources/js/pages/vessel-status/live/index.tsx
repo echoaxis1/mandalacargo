@@ -1,10 +1,16 @@
 import ClockDisplay from '@/components/clock-display';
+import AnnouncementMarquee from '@/pages/announcement/marquee';
+import { Announcement } from '@/types/announcement';
 import { VesselStatus } from '@/types/vessel';
 import { Head } from '@inertiajs/react';
-import Marquee from 'react-fast-marquee';
 import TableLive from './table';
 
-const VesselStatusLive = ({ resource }: { resource: Paginate<VesselStatus> }) => {
+type VesselStatusLiveProps = {
+    resource: Paginate<VesselStatus>;
+    announcements: Announcement[];
+};
+
+const VesselStatusLive = ({ resource, announcements }: VesselStatusLiveProps) => {
     return (
         <div className="relative h-screen overflow-hidden">
             {/* Background transparan */}
@@ -29,10 +35,7 @@ const VesselStatusLive = ({ resource }: { resource: Paginate<VesselStatus> }) =>
                 </div>
 
                 <div className="fixed bottom-0 z-50 w-full bg-yellow-100 shadow-inner">
-                    <Marquee className="py-5 text-xl font-medium text-gray-800">
-                        🚢 KM Leuser - ETA: 7 Juli • 📦 PT. Kargo Sukses - FCL/1x40 - JICT • 🚢 KM Gunung Dempo - Delay
-                        cuaca • 📦 CV. Indah Logistik - LCL - NPCT •
-                    </Marquee>
+                    <AnnouncementMarquee data={announcements} />
                 </div>
             </div>
         </div>

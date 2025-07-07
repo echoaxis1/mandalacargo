@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VesselStatusRequest;
 use App\Http\Resources\VesselStatusResource;
+use App\Models\Announcement;
 use App\Models\VesselStatus;
 use App\Services\VesselStatusService;
 use Illuminate\Http\Request;
@@ -86,6 +87,8 @@ class VesselStatusController extends Controller
     {
         $resource = $this->service->paginate();
 
-        return Inertia::render('vessel-status/live/index', compact('resource'));
+        $announcements = Announcement::where('is_active', true)->orderBy('created_at', 'desc')->get();
+
+        return Inertia::render('vessel-status/live/index', compact(['resource', 'announcements']));
     }
 }
