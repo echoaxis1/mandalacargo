@@ -11,7 +11,7 @@ const LiveLocked = () => {
     const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault();
         // setValue(e.target[0].value);
-        if (vessel_key === '') return;
+        if (vessel_key !== '31082020') return;
 
         setValue(vessel_key);
     };
