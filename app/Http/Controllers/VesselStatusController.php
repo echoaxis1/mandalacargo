@@ -87,7 +87,11 @@ class VesselStatusController extends Controller
     {
         $resource = $this->service->paginate();
 
-        $announcements = Announcement::where('is_active', true)->orderBy('created_at', 'desc')->get();
+        $announcements = Announcement::where('is_active', true)
+            ->where('start_time', '<=', now())
+            ->where('end_time', '>=', now())
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return Inertia::render('vessel-status/live/index', compact(['resource', 'announcements']));
     }
