@@ -31,7 +31,7 @@ const ClockDisplay = ({ className }: { className?: string }) => {
         <div className="space-y-1.5">
             <p className="text-center text-xs font-extralight">{time.day}</p>
             <div
-                className={`mx-auto h-full rounded bg-black px-4 py-2 text-center font-bold text-white shadow ${className}`}
+                className={`mx-auto h-full w-[200px] rounded bg-black px-4 py-2 text-center font-bold text-white shadow ${className}`}
             >
                 <div className="">
                     {time.hours}:{time.minutes}:{time.seconds}
