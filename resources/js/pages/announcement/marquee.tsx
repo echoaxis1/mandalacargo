@@ -17,7 +17,7 @@ const AnnouncementMarquee = ({ data }: { data: Announcement[] }) => {
                 }}
             >
                 {data.map((item) => (
-                    <span key={item.content} className="mx-10 flex gap-2">
+                    <span key={item.content} className="mx-10 flex gap-2 text-2xl">
                         <p className="font-bold">{item.title}:</p>
                         <p>{item.content}</p>
                     </span>
@@ -28,6 +28,3 @@ const AnnouncementMarquee = ({ data }: { data: Announcement[] }) => {
 };
 
 export default AnnouncementMarquee;
-function useEffect(arg0: () => () => void, arg1: never[]) {
-    throw new Error('Function not implemented.');
-}

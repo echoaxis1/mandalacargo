@@ -13,7 +13,7 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
             router.reload({
                 only: ['resource'], // ini sesuai dengan prop yang kamu kirim dari controller
             });
-        }, 5000); // 5 detik
+        }, 60000); // 5 detik
 
         return () => clearInterval(interval); // bersihkan saat komponen unmount
     }, []);

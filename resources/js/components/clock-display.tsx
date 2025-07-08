@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const ClockDisplay = () => {
+const ClockDisplay = ({ className }: { className?: string }) => {
     const [time, setTime] = useState({
         hours: '00',
         minutes: '00',
@@ -29,9 +29,13 @@ const ClockDisplay = () => {
 
     return (
         <div className="">
-            <p className="mb-1.5 text-center text-white">{time.day}</p>
-            <div className="mx-auto w-[320px] rounded bg-black px-4 py-2 text-center text-7xl text-white shadow">
-                {time.hours}:{time.minutes}:{time.seconds}
+            <div
+                className={`mx-auto h-full rounded bg-black px-4 py-2 text-center font-bold text-white shadow ${className}`}
+            >
+                <div className="">
+                    <p className="text-xs font-extralight">{time.day}</p>
+                    {time.hours}:{time.minutes}:{time.seconds}
+                </div>
             </div>
         </div>
     );
