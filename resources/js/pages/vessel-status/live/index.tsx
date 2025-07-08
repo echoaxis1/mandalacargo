@@ -1,4 +1,3 @@
-import ClockDisplay from '@/components/clock-display';
 import AnnouncementMarquee from '@/pages/announcement/marquee';
 import { Announcement } from '@/types/announcement';
 import { VesselStatus } from '@/types/vessel';
@@ -36,13 +35,8 @@ const VesselStatusLive = ({ resource, announcements }: VesselStatusLiveProps) =>
                     <TableLive data={resource} />
                 </div>
 
-                <div className="fixed bottom-0 z-50">
-                    <div className="flex">
-                        <div className="w-full bg-yellow-100 shadow-inner">
-                            <AnnouncementMarquee data={announcements} />
-                        </div>
-                        <ClockDisplay className="flex w-[250px] items-center justify-center text-5xl" />
-                    </div>
+                <div className="fixed bottom-0 z-50 w-full bg-yellow-100 shadow-inner">
+                    <AnnouncementMarquee data={announcements} />
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+import ClockDisplay from '@/components/clock-display';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { VesselStatus } from '@/types/vessel';
 import { router } from '@inertiajs/react';
@@ -31,11 +32,13 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
             </div>
 
             <div className="px-12">
-                <div className="mt-8 flex justify-between">
+                <div className="mt-8 flex items-end justify-between">
                     <h1 className="mb-3 flex gap-2 text-2xl font-bold">
                         <Ship />
-                        Vessel Status
+                        Live Vessel
                     </h1>
+
+                    <ClockDisplay className="text-4xl" />
                 </div>
 
                 <Table className="bg-gray-800/50">

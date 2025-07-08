@@ -28,12 +28,12 @@ const ClockDisplay = ({ className }: { className?: string }) => {
     }, []);
 
     return (
-        <div className="">
+        <div className="space-y-1.5">
+            <p className="text-center text-xs font-extralight">{time.day}</p>
             <div
                 className={`mx-auto h-full rounded bg-black px-4 py-2 text-center font-bold text-white shadow ${className}`}
             >
                 <div className="">
-                    <p className="text-xs font-extralight">{time.day}</p>
                     {time.hours}:{time.minutes}:{time.seconds}
                 </div>
             </div>
