@@ -12,9 +12,17 @@ class PortController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $ports = Port::all();
+        $query = Port::query();
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%")
+                ->orWhere('country', 'like', "%{$search}%")
+                ->orWhere('code', 'like', "%{$search}%");
+        }
+
+        $ports = $query->get();
         return Inertia::render('port/index', compact('ports'));
     }
 

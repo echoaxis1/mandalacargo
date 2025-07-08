@@ -1,6 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
 import { Port } from '@/types/port';
 import ActionsButton from './actions-button';
+import SearchPort from './search';
 import TablePort from './table';
 
 const breadcrumbs = [
@@ -13,10 +14,14 @@ const breadcrumbs = [
 const index = ({ ports }: { ports: Port[] }) => {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <div className="mt-5 flex items-center justify-between px-5">
-                <h1 className="text-xl">Daftar Pelabuhan</h1>
+            <div className="px-5">
+                <div className="mt-5 flex items-center justify-between">
+                    <h1 className="text-xl">Daftar Pelabuhan</h1>
 
-                <ActionsButton />
+                    <ActionsButton />
+                </div>
+
+                <SearchPort />
             </div>
 
             <TablePort data={ports} />

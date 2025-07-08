@@ -10,6 +10,11 @@ const options = [
     { value: 'onvessel', label: 'ON VESSEL' },
     { value: 'sppb', label: 'SPPB' },
     { value: 'spjm', label: 'SPJM' },
+    { value: 'karantina', label: 'KARANTINA' },
+    { value: 'moreed', label: 'MOREED' },
+    { value: 'sp2mp', label: 'SP2MP' },
+    { value: 'npd', label: 'NPD' },
+    { value: 'sptnp', label: 'SPTNP' },
 ];
 
 const SelectStatus = ({ value, onChange }: Props) => {

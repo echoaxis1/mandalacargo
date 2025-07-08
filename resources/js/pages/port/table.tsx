@@ -9,7 +9,9 @@ const TablePort = ({ data }: { data: Port[] }) => {
     return (
         <div className="px-5">
             <Table>
-                <TableCaption>Menampilkan daftar pelabuhan</TableCaption>
+                <TableCaption>
+                    {data.length > 0 ? 'Menampilkan daftar port' : 'Tidak ada informasi yang ditampilkan'}
+                </TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead>No</TableHead>
