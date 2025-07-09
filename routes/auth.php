@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ExchangeRateController;
 use App\Http\Controllers\PortController;
 use App\Http\Controllers\VesselStatusController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/announcement', AnnouncementController::class);
 
     Route::resource('/port', PortController::class);
+
+
+    Route::get('/exchange-rate', ExchangeRateController::class);
 
 
     Route::get('verify-email', EmailVerificationPromptController::class)
