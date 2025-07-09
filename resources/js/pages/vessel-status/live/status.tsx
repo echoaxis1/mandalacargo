@@ -1,10 +1,25 @@
-import { CheckCircle, PackagePlus, ShieldAlert, Ship } from 'lucide-react';
+import {
+    BadgeDollarSign,
+    Ban,
+    Boxes,
+    CheckCircle,
+    Landmark,
+    PackagePlus,
+    ShieldAlert,
+    ShieldCheck,
+    Ship,
+} from 'lucide-react';
 
 const options = [
     { value: 'loading', label: 'LOADING', icon: PackagePlus },
     { value: 'onvessel', label: 'ON VESSEL', icon: Ship },
     { value: 'sppb', label: 'SPPB', icon: CheckCircle },
     { value: 'spjm', label: 'SPJM', icon: ShieldAlert },
+    { value: 'karantina', label: 'KARANTINA', icon: ShieldCheck },
+    { value: 'moreed', label: 'MOREED', icon: Boxes },
+    { value: 'sp2mp', label: 'SP2MP', icon: Landmark },
+    { value: 'npd', label: 'NPD', icon: BadgeDollarSign },
+    { value: 'sptnp', label: 'SPTNP', icon: Ban },
 ];
 
 const Status = ({ status }: { status: string }) => {

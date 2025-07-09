@@ -44,7 +44,7 @@ const TableLive = ({ data }: { data: Paginate<VesselStatus> }) => {
                 <Table className="bg-gray-800/50">
                     <TableCaption className="text-white">Data di terakhir update</TableCaption>
                     <TableHeader className="bg-blue-200">
-                        <TableRow className="text-2xl">
+                        <TableRow className="text-2xl text-black">
                             <TableHead>Consignee</TableHead>
                             <TableHead>Vessel</TableHead>
                             <TableHead className="text-center">ETD</TableHead>
