@@ -58,7 +58,7 @@ class ExchangeRate extends Model
 
     static function createAnnouncement()
     {
-        $filter_currency = Self::whereIn('curency', ['IDRUSD', 'IDRSGD', 'IDRGBP', 'IDREUR'])->get();
+        $filter_currency = Self::whereIn('curency', ['IDRUSD', 'IDRSGD', 'IDRGBP', 'IDREUR', 'IDRMYR'])->get();
 
         // membuat data baru ke announcement jika sebelumnya ada
         foreach ($filter_currency as $currency) {
