@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\VesselStatusRequest;
 use App\Http\Resources\VesselStatusResource;
 use App\Models\Announcement;
+use App\Models\ExchangeRate;
 use App\Models\VesselStatus;
 use App\Services\VesselStatusService;
 use Illuminate\Http\Request;
@@ -86,6 +87,9 @@ class VesselStatusController extends Controller
     public function live()
     {
         $resource = $this->service->paginate();
+
+        // mendapatkan data currency
+        ExchangeRate::getCurrency();
 
         $announcements = Announcement::where('is_active', true)
             ->where('start_time', '<=', now())

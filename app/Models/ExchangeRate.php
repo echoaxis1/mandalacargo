@@ -16,11 +16,11 @@ class ExchangeRate extends Model
     {
         $currency = Self::all();
 
-        self::createAnnouncement();
-
         if ($currency->last()?->fetched_at < now()->subDays(1)) {
-            return self::fetchCurrency();
+            self::fetchCurrency();
         }
+
+        self::createAnnouncement();
 
         return $currency;
     }
@@ -56,7 +56,7 @@ class ExchangeRate extends Model
     }
 
 
-    static function createAnnouncement()
+    protected static function createAnnouncement()
     {
         $filter_currency = Self::whereIn('curency', ['IDRUSD', 'IDRSGD', 'IDRGBP', 'IDREUR', 'IDRMYR'])->get();
 
