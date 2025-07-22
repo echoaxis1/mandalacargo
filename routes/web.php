@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlaygroundController;
 use App\Http\Controllers\VesselStatusController;
 use App\Models\ExchangeRate;
 use Illuminate\Support\Facades\Route;
@@ -18,13 +19,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::get('/playground', function () {
-
-    $exchange = ExchangeRate::getCurrency();
-
-
-    dd($exchange->first()->curency);
-});
+Route::get('/playground', PlaygroundController::class);
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
