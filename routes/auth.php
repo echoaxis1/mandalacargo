@@ -15,8 +15,8 @@ use App\Http\Controllers\VesselStatusController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('vessel-status/live', [VesselStatusController::class, 'live'])
-        ->name('vessel-status.live');
+    // Route::get('vessel-status/live', [VesselStatusController::class, 'live'])
+    //     ->name('vessel-status.live');
 
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');

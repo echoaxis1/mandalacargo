@@ -17,8 +17,10 @@ const TableFade = ({ data }: { data: Paginate<VesselStatus> }) => {
             setTimeout(() => {
                 const nextPage = pageRef.current < data.meta.last_page ? pageRef.current + 1 : 1;
                 pageRef.current = nextPage;
+
+                console.log('nextPage', nextPage);
                 router.get(
-                    route('vessel-status.live', { page: nextPage }),
+                    route('home', { page: nextPage }),
                     {},
                     {
                         preserveState: true,

@@ -1,5 +1,15 @@
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from '@/components/ui/pagination';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useVesselStore } from '@/stores/vessel';
+import { VesselStatus } from '@/types/vessel';
+import { router } from '@inertiajs/react';
 import { formatDate } from 'date-fns';
 import { Ship } from 'lucide-react';
 import ActionButton from './action-button';
@@ -21,7 +31,6 @@ const TableVesselStatus = ({ data }: { data: Paginate<VesselStatus> }) => {
                 <TableCaption>Menampilkan daftar shipment</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-[50px]">No</TableHead>
                         <TableHead>Consignee</TableHead>
                         <TableHead>Vessel</TableHead>
                         <TableHead className="text-left">ETD</TableHead>
@@ -39,7 +48,6 @@ const TableVesselStatus = ({ data }: { data: Paginate<VesselStatus> }) => {
                             }}
                             className={`${vessel.id === item.id ? 'bg-slate-200' : ''}`}
                         >
-                            <TableCell className="w-[50px]">{index + 1}</TableCell>
                             <TableCell>{item.consignee}</TableCell>
                             <TableCell>{item.vessel}</TableCell>
                             <TableCell className="text-left">{formatDate(item.etd, 'dd MMMM yyyy')}</TableCell>
@@ -50,6 +58,42 @@ const TableVesselStatus = ({ data }: { data: Paginate<VesselStatus> }) => {
                     ))}
                 </TableBody>
             </Table>
+
+            {/* Paginate */}
+            <Pagination>
+                <PaginationContent>
+                    {data.meta.current_page > 1 && (
+                        <PaginationItem>
+                            <PaginationPrevious
+                                onClick={() =>
+                                    router.get(route('vessel-status.index', { page: data.meta.current_page - 1 }))
+                                }
+                            />
+                        </PaginationItem>
+                    )}
+
+                    {Array.from({ length: data.meta.last_page }, (_, i) => i + 1).map((page) => (
+                        <PaginationItem key={page}>
+                            <PaginationLink
+                                onClick={() => router.get(route('vessel-status.index', { page }))}
+                                isActive={data.meta.current_page === page}
+                            >
+                                {page}
+                            </PaginationLink>
+                        </PaginationItem>
+                    ))}
+
+                    {data.meta.current_page < data.meta.last_page && (
+                        <PaginationItem>
+                            <PaginationNext
+                                onClick={() =>
+                                    router.get(route('vessel-status.index', { page: data.meta.current_page + 1 }))
+                                }
+                            />
+                        </PaginationItem>
+                    )}
+                </PaginationContent>
+            </Pagination>
         </div>
     );
 };
